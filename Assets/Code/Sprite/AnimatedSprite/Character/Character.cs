@@ -7,10 +7,10 @@ public class Character : MonoBehaviour
     //public int[,] position = new int[1,1];
     private GridCoordinates position;
     public GridCoordinates Position
-   {
-       get { return position; }
-       set { position = value; }
-   }
+    {
+       get;
+       set;
+    }
 
     // Start is called before the first frame update
     void Start()

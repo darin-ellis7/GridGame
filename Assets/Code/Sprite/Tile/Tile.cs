@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    //static Func<void, int> callback = null;
-    
+    private Character standing;
+    public Character Standing
+    {
+        get;
+        set;
+    }
+
+    public Tile(Vector3 position)
+    {
+        this.transform.position = position;
+    }
+
+    public void ClearStanding()
+    {
+        standing = null;
+    }
 
     // Start is called before the first frame update
     void Start()
