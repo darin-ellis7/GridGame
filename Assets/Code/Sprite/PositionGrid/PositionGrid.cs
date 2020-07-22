@@ -6,45 +6,60 @@ public class PositionGrid : MonoBehaviour
 {
     [SerializeField] private static int xBound = 6;
     [SerializeField] private static int yBound = 3;
-    public Vector3[,] tileTransformPositions = new Vector3[xBound, yBound];
     private Tile[,] grid = new Tile[xBound,yBound];
     private List<Character> characters = new List<Character>();
 
     public PositionGrid()
     {
-        //AssignTransformPositionsToTiles();
+        
     }
 
-    /*private void AssignTransformPositionsToTiles()
+    private void AssignTransformPositionsToTiles()
     {
+        float xTransform = -7.5f;
+        float yTransform = -4.4f;
+        float xOffset = 2.2f;
+        float yOffset = 1.1f;
+
         for (int i = 0; i < xBound; i++)
         {
+            yTransform = -4.4f;
+
             for (int j = 0; j < yBound; j++)
             {
-                //grid[i,j].transform.position = tileTransformPositions[i,j];
+                Vector3 tilePosition = new Vector3(xTransform, yTransform);
+                this.grid[i,j] = new Tile(tilePosition);
+                yTransform += yOffset;
             }
-        }
-    }*/
 
-    private bool MoveUp(Character character)
+            xTransform += xOffset;
+        }
+    }
+
+    public Vector3 GetTileVector3(GridCoordinates gridCoordinates)
+    {
+        return grid[gridCoordinates.X, gridCoordinates.Y].transform.position;
+    }
+
+    public bool MoveUp(Character character)
     {
         GridCoordinates target = character.Position;
         target.Y += 1;
         return Move(character, target);
     }
-    private bool MoveDown(Character character)
+    public bool MoveDown(Character character)
     {
         GridCoordinates target = character.Position;
         target.Y -= 1;
         return Move(character, target);
     }
-    private bool MoveLeft(Character character)
+    public bool MoveLeft(Character character)
     {
         GridCoordinates target = character.Position;
         target.X -= 1;
         return Move(character, target);
     }
-    private bool MoveRight(Character character)
+    public bool MoveRight(Character character)
     {
         GridCoordinates target = character.Position;
         target.X += 1;
@@ -71,12 +86,12 @@ public class PositionGrid : MonoBehaviour
         
     }
 
-    private void RemoveCharacterFromTile(GridCoordinates gridCoordinatesToRemoveFrom)
+    public void RemoveCharacterFromTile(GridCoordinates gridCoordinatesToRemoveFrom)
     {
         Tile tile = grid[gridCoordinatesToRemoveFrom.X, gridCoordinatesToRemoveFrom.Y];
         tile.ClearStanding();
     }
-    private void AddCharacterToTile(GridCoordinates gridCoordinatesToAddTo, Character characterToAdd)
+    public void AddCharacterToTile(GridCoordinates gridCoordinatesToAddTo, Character characterToAdd)
     {
         grid[gridCoordinatesToAddTo.X, gridCoordinatesToAddTo.Y].Standing = characterToAdd;
         characterToAdd.Position = gridCoordinatesToAddTo;
@@ -85,7 +100,7 @@ public class PositionGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        AssignTransformPositionsToTiles();
     }
 
     // Update is called once per frame
