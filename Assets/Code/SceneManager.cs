@@ -22,8 +22,11 @@ public class SceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Starting");
+
+        GameObject battleGrid = new GameObject("battleGrid", typeof())
         GridCoordinates staringPosition = new GridCoordinates(1,1);
-        PositionGrid battleGrid = gameObject.AddComponent(typeof(PositionGrid)) as PositionGrid;
+        PositionGrid positionGrid = gameObject.AddComponent(typeof(PositionGrid)) as PositionGrid;
         Character mainChar = new Character(staringPosition, battleGrid);
     }
 

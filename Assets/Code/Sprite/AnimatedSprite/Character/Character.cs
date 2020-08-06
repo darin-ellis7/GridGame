@@ -6,11 +6,8 @@ public class Character : MonoBehaviour
 {
     //public int[,] position = new int[1,1];
     private GridCoordinates position;
-    public GridCoordinates Position
-    {
-       get;
-       set;
-    }
+    public GridCoordinates Position { get; set; }
+    
     private PositionGrid grid;
 
     public Character(GridCoordinates startingPosition, PositionGrid positionGrid)
@@ -27,6 +24,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject characterObject = new GameObject("characterObject", typeof(SpriteRenderer));
         grid.AddCharacterToTile(this.position, this);
         UpdateSprite();
     }
