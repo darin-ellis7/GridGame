@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PositionGrid : MonoBehaviour
 {
+    [SerializeField] private Tile tilePrefab;
+    [SerializeField] private Transform tileContainer;
     [SerializeField] private static int xBound = 6;
     [SerializeField] private static int yBound = 3;
     private Tile[,] grid = new Tile[xBound,yBound];
@@ -28,7 +30,7 @@ public class PositionGrid : MonoBehaviour
             for (int j = 0; j < yBound; j++)
             {
                 Vector3 tilePosition = new Vector3(xTransform, yTransform);
-                this.grid[i,j] = new Tile(tilePosition);
+                this.grid[i,j] = Instantiate(tilePrefab, tilePosition, Quaternion.identity, tileContainer);
                 yTransform += yOffset;
             }
 
