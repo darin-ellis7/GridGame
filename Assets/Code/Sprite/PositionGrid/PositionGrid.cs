@@ -18,14 +18,14 @@ public class PositionGrid : MonoBehaviour
 
     private void AssignTransformPositionsToTiles()
     {
-        float xTransform = -7.5f;
-        float yTransform = -4.4f;
-        float xOffset = 2.2f;
-        float yOffset = 1.1f;
+        float xTransform = 0.0f;
+        float yTransform = 0.0f;
+        float xOffset = 0.4f;
+        float yOffset = 0.25f;
 
         for (int i = 0; i < xBound; i++)
         {
-            yTransform = -4.4f;
+            yTransform = 0.0f;
 
             for (int j = 0; j < yBound; j++)
             {
