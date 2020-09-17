@@ -11,7 +11,7 @@ public class PositionGrid : MonoBehaviour
     [SerializeField] private static float gridLowerLeftTileCenter_XCoordinate = 0.0f;
     [SerializeField] private static float gridLowerLeftTileCenter_YCoordinate = 0.0f;
     private Tile[,] grid = new Tile[xBound,yBound];
-    private List<Character> characters = new List<Character>();
+    ///private List<Character> characters = new List<Character>();
 
     public PositionGrid()
     {
@@ -25,8 +25,6 @@ public class PositionGrid : MonoBehaviour
         Vector2 tileSpriteSize = tilePrefab.GetComponent<SpriteRenderer>().bounds.size;
         float xOffset = tileSpriteSize.x;
         float yOffset = tileSpriteSize.y;
-
-
 
         for (int i = 0; i < xBound; i++)
         {

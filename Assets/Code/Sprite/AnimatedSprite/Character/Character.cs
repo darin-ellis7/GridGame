@@ -21,10 +21,16 @@ public class Character : MonoBehaviour
         this.transform.position = this.grid.GetTileVector3(this.position);
     }
 
+    void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject characterObject = new GameObject("characterObject", typeof(SpriteRenderer));
+        //GameObject characterObject = new GameObject("characterObject", typeof(SpriteRenderer));
+        grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
         grid.AddCharacterToTile(this.position, this);
         UpdateSprite();
     }
