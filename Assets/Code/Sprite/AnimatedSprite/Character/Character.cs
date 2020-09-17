@@ -6,7 +6,17 @@ public class Character : MonoBehaviour
 {
     //public int[,] position = new int[1,1];
     private GridCoordinates position;
-    public GridCoordinates Position { get; set; }
+    public GridCoordinates Position
+    { 
+        get
+        {
+            return position;
+        } 
+        set 
+        {
+            position = value;
+        }
+    }
     
     private PositionGrid grid;
 
@@ -18,7 +28,9 @@ public class Character : MonoBehaviour
 
     private void UpdateSprite()
     {
+        Debug.Log ("x:" + this.transform.position.x + " y:" + this.transform.position.y);
         this.transform.position = this.grid.GetTileVector3(this.position);
+        Debug.Log ("x:" + this.transform.position.x + " y:" + this.transform.position.y);
     }
 
     void Awake()
@@ -30,8 +42,8 @@ public class Character : MonoBehaviour
     void Start()
     {
         //GameObject characterObject = new GameObject("characterObject", typeof(SpriteRenderer));
-        grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
-        grid.AddCharacterToTile(this.position, this);
+        this.grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        this.grid.AddCharacterToTile(this.position, this);
         UpdateSprite();
     }
 
@@ -40,21 +52,25 @@ public class Character : MonoBehaviour
     {
         if(Input.GetKeyDown("w"))
         {
+            Debug.Log ("w");
             this.grid.MoveUp(this);
             UpdateSprite();
         }
         if(Input.GetKeyDown("a"))
         {
+            Debug.Log ("a");
             this.grid.MoveLeft(this);
             UpdateSprite();
         }
         if(Input.GetKeyDown("s"))
         {
+            Debug.Log ("s");
             this.grid.MoveDown(this);
             UpdateSprite();
         }
         if(Input.GetKeyDown("d"))
         {
+            Debug.Log ("d");
             this.grid.MoveRight(this);
             UpdateSprite();
         }

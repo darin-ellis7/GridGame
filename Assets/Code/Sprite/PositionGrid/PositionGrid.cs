@@ -43,7 +43,10 @@ public class PositionGrid : MonoBehaviour
 
     public Vector3 GetTileVector3(GridCoordinates gridCoordinates)
     {
-        return grid[gridCoordinates.X, gridCoordinates.Y].transform.position;
+        Vector3 tileSize = tilePrefab.GetComponent<SpriteRenderer>().bounds.size;
+        Vector3 characterOffset = new Vector3();
+        characterOffset.y = tileSize.y / 2;
+        return grid[gridCoordinates.X, gridCoordinates.Y].transform.position + characterOffset;
     }
 
     public bool MoveUp(Character character)
@@ -76,8 +79,13 @@ public class PositionGrid : MonoBehaviour
         bool validMove = BoundCheck(target.X, target.Y);
         if (validMove) 
         {
+            Debug.Log ("valid move");
             RemoveCharacterFromTile(character.Position);
             AddCharacterToTile(target, character);
+        }
+        else
+        {
+            Debug.Log ("invalid move");
         }
         return validMove;
     }
@@ -98,7 +106,8 @@ public class PositionGrid : MonoBehaviour
     }
     public void AddCharacterToTile(GridCoordinates gridCoordinatesToAddTo, Character characterToAdd)
     {
-        grid[gridCoordinatesToAddTo.X, gridCoordinatesToAddTo.Y].Standing = characterToAdd;
+        Tile tile = grid[gridCoordinatesToAddTo.X, gridCoordinatesToAddTo.Y];
+        tile.Standing = characterToAdd;
         characterToAdd.Position = gridCoordinatesToAddTo;
     }
 

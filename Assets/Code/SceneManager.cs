@@ -26,7 +26,7 @@ public class SceneManager : MonoBehaviour
     void Start()
     { 
         Debug.Log("Starting");
-        PositionGrid testGrid = new PositionGrid();
+        // PositionGrid testGrid = new PositionGrid();
         Instantiate(testCharacter, charPosition, Quaternion.identity);
     }
 
