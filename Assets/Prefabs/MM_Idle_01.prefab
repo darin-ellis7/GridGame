@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9159681931504109252}
-  - component: {fileID: 9159681931504109253}
   - component: {fileID: 2158058944384150925}
+  - component: {fileID: -6274516465647120113}
   m_Layer: 0
   m_Name: MM_Idle_01
   m_TagString: Untagged
@@ -32,7 +32,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &9159681931504109253
+--- !u!114 &2158058944384150925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159681931504109254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf086526f38cd4fa298d64a9d50460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: -6274516465647120113}
+  idle:
+  - {fileID: 2134549576617391521, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -6220091244538012737, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -1872998540497071905, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -6041534505879322548, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -1872998540497071905, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -6220091244538012737, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+--- !u!212 &-6274516465647120113
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,29 +88,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -652293303
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0cede6dbb9da3b543a7782f060b51230, type: 3}
+  m_Sprite: {fileID: 2134549576617391521, guid: b986ca459ab323d43a1c567762f214c9,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.34, y: 0.43}
+  m_Size: {x: 0.34, y: 0.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2158058944384150925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9159681931504109254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79bf086526f38cd4fa298d64a9d50460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

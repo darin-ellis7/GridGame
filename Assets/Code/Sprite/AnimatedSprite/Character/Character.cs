@@ -5,6 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     //public int[,] position = new int[1,1];
+    public SpriteRenderer spriteRenderer;
     private GridCoordinates position;
     public GridCoordinates Position
     { 
@@ -17,6 +18,8 @@ public class Character : MonoBehaviour
             position = value;
         }
     }
+
+    public Sprite[] idle;
     
     private PositionGrid grid;
 
@@ -28,9 +31,7 @@ public class Character : MonoBehaviour
 
     private void UpdateSprite()
     {
-        Debug.Log ("x:" + this.transform.position.x + " y:" + this.transform.position.y);
         this.transform.position = this.grid.GetTileVector3(this.position);
-        Debug.Log ("x:" + this.transform.position.x + " y:" + this.transform.position.y);
     }
 
     void Awake()
@@ -38,13 +39,29 @@ public class Character : MonoBehaviour
         
     }
 
+    IEnumerator Idle()
+    {
+        int i;
+        i = 0;
+        while (i < idle.Length)
+        {
+            spriteRenderer.sprite = idle[i];
+            i++;
+            yield return new WaitForSeconds(0.07f);
+            yield return 0;
+                
+        }
+        StartCoroutine(Idle());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject characterObject = new GameObject("characterObject", typeof(SpriteRenderer));
+        gameObject.tag = "Player";
         this.grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
         this.grid.AddCharacterToTile(this.position, this);
         UpdateSprite();
+        StartCoroutine(Idle());
     }
 
     // Update is called once per frame
@@ -52,25 +69,21 @@ public class Character : MonoBehaviour
     {
         if(Input.GetKeyDown("w"))
         {
-            Debug.Log ("w");
             this.grid.MoveUp(this);
             UpdateSprite();
         }
         if(Input.GetKeyDown("a"))
         {
-            Debug.Log ("a");
             this.grid.MoveLeft(this);
             UpdateSprite();
         }
         if(Input.GetKeyDown("s"))
         {
-            Debug.Log ("s");
             this.grid.MoveDown(this);
             UpdateSprite();
         }
         if(Input.GetKeyDown("d"))
         {
-            Debug.Log ("d");
             this.grid.MoveRight(this);
             UpdateSprite();
         }
