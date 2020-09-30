@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
-    [SerializeField] private Character testCharacter;
+    [SerializeField] private Player testCharacter;
     private Vector3 charPosition = new Vector3(1, 1);
 
     void Awake()

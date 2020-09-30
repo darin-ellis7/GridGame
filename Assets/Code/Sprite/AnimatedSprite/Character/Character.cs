@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    //public int[,] position = new int[1,1];
     public SpriteRenderer spriteRenderer;
     private GridCoordinates position;
     public GridCoordinates Position
@@ -21,22 +20,11 @@ public class Character : MonoBehaviour
 
     public Sprite[] idle;
     
-    private PositionGrid grid;
+    protected PositionGrid grid;
 
-    public Character(GridCoordinates startingPosition, PositionGrid positionGrid)
-    {
-        position = startingPosition;
-        grid = positionGrid;
-    }
-
-    private void UpdateSprite()
+    protected void UpdateSprite()
     {
         this.transform.position = this.grid.GetTileVector3(this.position);
-    }
-
-    void Awake()
-    {
-        
     }
 
     IEnumerator Idle()
@@ -62,31 +50,5 @@ public class Character : MonoBehaviour
         this.grid.AddCharacterToTile(this.position, this);
         UpdateSprite();
         StartCoroutine(Idle());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown("w"))
-        {
-            this.grid.MoveUp(this);
-            UpdateSprite();
-        }
-        if(Input.GetKeyDown("a"))
-        {
-            this.grid.MoveLeft(this);
-            UpdateSprite();
-        }
-        if(Input.GetKeyDown("s"))
-        {
-            this.grid.MoveDown(this);
-            UpdateSprite();
-        }
-        if(Input.GetKeyDown("d"))
-        {
-            this.grid.MoveRight(this);
-            UpdateSprite();
-        }
-
     }
 }
