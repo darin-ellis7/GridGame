@@ -1,38 +1,38 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class SceneManager : MonoBehaviour
-// {
-//     void Awake()
-//     {
-//         Debug.Log ("Awake");
-//     }
+public class SceneManager : MonoBehaviour
+{
+    [SerializeField] private Character testCharacter;
+    private Vector3 charPosition = new Vector3(1, 1);
 
-//     void OnEnable ()
-//     {
-//         Debug.Log ("OnEnable");
-//     }
+    void Awake()
+    {
+        Debug.Log ("Awake");
+    }
 
-//     void Main ()
-//     {
-//         Debug.Log ("Main");
-//     }
+    void OnEnable ()
+    {
+        Debug.Log ("OnEnable");
+    }
 
-//     // Start is called before the first frame update
-//     void Start()
-//     {
-//         Debug.Log("Starting");
+    void Main ()
+    {
+        Debug.Log ("Main");
+    }
 
-//         GameObject battleGrid = new GameObject("battleGrid", typeof())
-//         GridCoordinates staringPosition = new GridCoordinates(1,1);
-//         PositionGrid positionGrid = gameObject.AddComponent(typeof(PositionGrid)) as PositionGrid;
-//         Character mainChar = new Character(staringPosition, battleGrid);
-//     }
+    // Start is called before the first frame update
+    void Start()
+    { 
+        Debug.Log("Starting");
+        // PositionGrid testGrid = new PositionGrid();
+        Instantiate(testCharacter, charPosition, Quaternion.identity);
+    }
 
-//     // Update is called once per frame
-//     void Update()
-//     {
+    // Update is called once per frame
+    void Update()
+    {
         
-//     }
-// }
+    }
+}

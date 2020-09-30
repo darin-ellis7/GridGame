@@ -162,9 +162,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1123281973}
   - component: {fileID: 1123281974}
+  - component: {fileID: 1123281975}
   m_Layer: 0
   m_Name: SceneManager
-  m_TagString: Untagged
+  m_TagString: SceneManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,6 +199,20 @@ MonoBehaviour:
   tilePrefab: {fileID: 7965597199447256232, guid: 54837e4a6d0bde04fa5cb369775556f0,
     type: 3}
   tileContainer: {fileID: 1877906330}
+--- !u!114 &1123281975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123281972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a470f280a3bdc2f419664a6a83f02e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testCharacter: {fileID: 2158058944384150925, guid: bf43a37a6e830034b92adbd8460854af,
+    type: 3}
 --- !u!1 &1614124786
 GameObject:
   m_ObjectHideFlags: 0

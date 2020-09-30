@@ -5,8 +5,21 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     //public int[,] position = new int[1,1];
+    public SpriteRenderer spriteRenderer;
     private GridCoordinates position;
-    public GridCoordinates Position { get; set; }
+    public GridCoordinates Position
+    { 
+        get
+        {
+            return position;
+        } 
+        set 
+        {
+            position = value;
+        }
+    }
+
+    public Sprite[] idle;
     
     private PositionGrid grid;
 
@@ -21,12 +34,34 @@ public class Character : MonoBehaviour
         this.transform.position = this.grid.GetTileVector3(this.position);
     }
 
+    void Awake()
+    {
+        
+    }
+
+    IEnumerator Idle()
+    {
+        int i;
+        i = 0;
+        while (i < idle.Length)
+        {
+            spriteRenderer.sprite = idle[i];
+            i++;
+            yield return new WaitForSeconds(0.07f);
+            yield return 0;
+                
+        }
+        StartCoroutine(Idle());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject characterObject = new GameObject("characterObject", typeof(SpriteRenderer));
-        grid.AddCharacterToTile(this.position, this);
+        gameObject.tag = "Player";
+        this.grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        this.grid.AddCharacterToTile(this.position, this);
         UpdateSprite();
+        StartCoroutine(Idle());
     }
 
     // Update is called once per frame

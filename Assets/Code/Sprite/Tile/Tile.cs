@@ -7,8 +7,14 @@ public class Tile : MonoBehaviour
     private Character standing;
     public Character Standing
     {
-        get;
-        set;
+        get
+        {
+            return standing;
+        }
+        set
+        {
+            standing = value;
+        }
     }
 
     public Tile(Vector3 position)
