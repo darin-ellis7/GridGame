@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9159681931504109252}
   - component: {fileID: 2158058944384150925}
   - component: {fileID: -6274516465647120113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MM_Idle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,8 +88,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -652293303
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2134549576617391521, guid: b986ca459ab323d43a1c567762f214c9,
     type: 3}
