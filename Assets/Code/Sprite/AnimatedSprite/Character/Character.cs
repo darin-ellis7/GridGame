@@ -20,6 +20,8 @@ public class Character : MonoBehaviour
     }
 
     public Sprite[] idle;
+    public Sprite[] move;
+    private const float moveAnimationTime = 0.02f;
     
     private PositionGrid grid;
 
@@ -41,18 +43,48 @@ public class Character : MonoBehaviour
 
     IEnumerator Idle()
     {
-        int i;
-        i = 0;
-        while (i < idle.Length)
+        spriteRenderer.sprite = idle[0];
+        yield return new WaitForSeconds(3);
+
+        for(int i = 0; i < idle.Length; i++)
         {
             spriteRenderer.sprite = idle[i];
-            i++;
             yield return new WaitForSeconds(0.07f);
-            yield return 0;
-                
+        }
+        for(int i = idle.Length - 1; i >= 0; i--)
+        {
+            spriteRenderer.sprite = idle[i];
+            yield return new WaitForSeconds(0.07f);
         }
         StartCoroutine(Idle());
     }
+
+    IEnumerator MoveOut()
+    {
+        for(int i = 0; i < move.Length; i++)
+        {
+            spriteRenderer.sprite = move[i];
+            yield return new WaitForSeconds(moveAnimationTime);
+        }
+        UpdateSprite();
+        StartCoroutine(MoveIn());
+    }
+    
+    IEnumerator MoveIn()
+    {
+        for(int i = move.Length - 1; i > 0; i--)
+        {
+            spriteRenderer.sprite = move[i];
+            yield return new WaitForSeconds(moveAnimationTime);
+        }
+        StartCoroutine(Idle());
+    }
+
+    private void PlayMovementAnimation()
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveOut());
+    } 
 
     // Start is called before the first frame update
     void Start()
@@ -69,23 +101,31 @@ public class Character : MonoBehaviour
     {
         if(Input.GetKeyDown("w"))
         {
-            this.grid.MoveUp(this);
-            UpdateSprite();
+            if(this.grid.MoveUp(this))
+            {
+                PlayMovementAnimation();
+            }
         }
         if(Input.GetKeyDown("a"))
         {
-            this.grid.MoveLeft(this);
-            UpdateSprite();
+            if(this.grid.MoveLeft(this))
+            {
+                PlayMovementAnimation();
+            }
         }
         if(Input.GetKeyDown("s"))
         {
-            this.grid.MoveDown(this);
-            UpdateSprite();
+            if(this.grid.MoveDown(this))
+            {
+                PlayMovementAnimation();
+            }
         }
         if(Input.GetKeyDown("d"))
         {
-            this.grid.MoveRight(this);
-            UpdateSprite();
+            if(this.grid.MoveRight(this))
+            {
+                PlayMovementAnimation();
+            }
         }
 
     }
