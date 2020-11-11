@@ -9,24 +9,19 @@ public class Player : Character
     {
         if(Input.GetKeyDown("w"))
         {
-            this.grid.MoveUp(this);
-            UpdateSprite();
+            grid.MoveUp(this);
         }
         if(Input.GetKeyDown("a"))
         {
-            this.grid.MoveLeft(this);
-            UpdateSprite();
+            grid.MoveLeft(this);
         }
         if(Input.GetKeyDown("s"))
         {
-            this.grid.MoveDown(this);
-            UpdateSprite();
+            grid.MoveDown(this);
         }
         if(Input.GetKeyDown("d"))
         {
-            this.grid.MoveRight(this);
-            UpdateSprite();
+            grid.MoveRight(this);
         }
-
     }
 }

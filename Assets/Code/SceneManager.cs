@@ -5,7 +5,9 @@ using UnityEngine;
 public class SceneManager : MonoBehaviour
 {
     [SerializeField] private Player testCharacter;
+    [SerializeField] private Enemy testEnemy;
     private Vector3 charPosition = new Vector3(1, 1);
+    private Vector3 enemyPosition = new Vector3(5, 1);
 
     void Awake()
     {
@@ -26,13 +28,10 @@ public class SceneManager : MonoBehaviour
     void Start()
     { 
         Debug.Log("Starting");
-        // PositionGrid testGrid = new PositionGrid();
         Instantiate(testCharacter, charPosition, Quaternion.identity);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //testCharacter.UpdateSprite();
+        Instantiate(testEnemy, enemyPosition, Quaternion.identity);
+        //testEnemy.UpdateSprite();
+        //testEnemy.Position = new GridCoordinates(5, 1);
     }
 }

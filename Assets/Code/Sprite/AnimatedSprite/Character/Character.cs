@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] private int GridPositionX = 0;
+    [SerializeField] private int GridPositionY = 0;
     public SpriteRenderer spriteRenderer;
     private GridCoordinates position;
     public GridCoordinates Position
@@ -22,9 +24,9 @@ public class Character : MonoBehaviour
     
     protected PositionGrid grid;
 
-    protected void UpdateSprite()
+    public void UpdateSprite()
     {
-        this.transform.position = this.grid.GetTileVector3(this.position);
+        transform.position = grid.GetTileVector3(Position);
     }
 
     IEnumerator Idle()
@@ -43,11 +45,11 @@ public class Character : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        gameObject.tag = "Player";
-        this.grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
-        this.grid.AddCharacterToTile(this.position, this);
+        Position = new GridCoordinates(GridPositionX, GridPositionY);
+        grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        grid.AddCharacterToTile(Position, this);
         UpdateSprite();
         StartCoroutine(Idle());
     }

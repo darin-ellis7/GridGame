@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7714e74934df7b4caa429acd28c7452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridPositionX: 1
+  GridPositionY: 1
   spriteRenderer: {fileID: -6274516465647120113}
   idle:
   - {fileID: 2134549576617391521, guid: b986ca459ab323d43a1c567762f214c9, type: 3}

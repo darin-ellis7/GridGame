@@ -82,6 +82,7 @@ public class PositionGrid : MonoBehaviour
             Debug.Log ("valid move");
             RemoveCharacterFromTile(character.Position);
             AddCharacterToTile(target, character);
+            character.UpdateSprite();
         }
         else
         {
