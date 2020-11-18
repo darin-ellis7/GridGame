@@ -11,14 +11,17 @@ public class Player : Character
         {
             grid.MoveUp(this);
         }
+
         if(Input.GetKeyDown("a"))
         {
             grid.MoveLeft(this);
         }
+
         if(Input.GetKeyDown("s"))
         {
             grid.MoveDown(this);
         }
+        
         if(Input.GetKeyDown("d"))
         {
             grid.MoveRight(this);
