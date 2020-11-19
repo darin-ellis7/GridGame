@@ -10,6 +10,8 @@ public class Character : MonoBehaviour
     protected PositionGrid grid;
     public Sprite[] idle;
     private GridCoordinates position;
+    public Sprite[] move;
+    private const float moveAnimationTime = 0.02f;
     public GridCoordinates Position
     { 
         get
@@ -22,20 +24,49 @@ public class Character : MonoBehaviour
             transform.position = grid.GetTileVector3(value);
         }
     }
-
+    
     IEnumerator Idle()
     {
-        int i;
-        i = 0;
-        while (i < idle.Length)
+        spriteRenderer.sprite = idle[0];
+        yield return new WaitForSeconds(3);
+
+        for(int i = 0; i < idle.Length; i++)
         {
             spriteRenderer.sprite = idle[i];
-            i++;
             yield return new WaitForSeconds(0.07f);
-            yield return 0;
-                
+        }
+        for(int i = idle.Length - 1; i >= 0; i--)
+        {
+            spriteRenderer.sprite = idle[i];
+            yield return new WaitForSeconds(0.07f);
         }
         StartCoroutine(Idle());
+    }
+
+    IEnumerator MoveOut()
+    {
+        for(int i = 0; i < move.Length; i++)
+        {
+            spriteRenderer.sprite = move[i];
+            yield return new WaitForSeconds(moveAnimationTime);
+        }
+        StartCoroutine(MoveIn());
+    }
+    
+    IEnumerator MoveIn()
+    {
+        for(int i = move.Length - 1; i > 0; i--)
+        {
+            spriteRenderer.sprite = move[i];
+            yield return new WaitForSeconds(moveAnimationTime);
+        }
+        StartCoroutine(Idle());
+    }
+
+    protected void PlayMovementAnimation()
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveOut());
     }
 
     // Start is called before the first frame update

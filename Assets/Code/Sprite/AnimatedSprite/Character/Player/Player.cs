@@ -9,22 +9,32 @@ public class Player : Character
     {
         if(Input.GetKeyDown("w"))
         {
-            grid.MoveUp(this);
+            if(grid.MoveUp(this))
+            {
+                PlayMovementAnimation();
+            }
         }
-
         if(Input.GetKeyDown("a"))
         {
-            grid.MoveLeft(this);
+            if(grid.MoveLeft(this))
+            {
+                PlayMovementAnimation();
+            }
         }
-
         if(Input.GetKeyDown("s"))
         {
-            grid.MoveDown(this);
+            if(grid.MoveDown(this))
+            {
+                PlayMovementAnimation();
+            }
         }
-
         if(Input.GetKeyDown("d"))
         {
-            grid.MoveRight(this);
+            if(grid.MoveRight(this))
+            {
+                PlayMovementAnimation();
+            }
         }
+
     }
 }
