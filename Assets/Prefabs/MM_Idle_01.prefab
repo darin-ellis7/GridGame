@@ -50,8 +50,10 @@ MonoBehaviour:
   - {fileID: -6220091244538012737, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   - {fileID: -1872998540497071905, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   - {fileID: -6041534505879322548, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
-  - {fileID: -1872998540497071905, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
-  - {fileID: -6220091244538012737, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  move:
+  - {fileID: -9105917943179242286, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -8121689194306274269, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  - {fileID: -5877150311823108249, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
 --- !u!212 &-6274516465647120113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +91,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -652293303
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2134549576617391521, guid: b986ca459ab323d43a1c567762f214c9,
     type: 3}
