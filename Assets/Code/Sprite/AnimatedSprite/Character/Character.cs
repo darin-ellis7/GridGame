@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
     [SerializeField] private int GridPositionX = 0;
     [SerializeField] private int GridPositionY = 0;
     public SpriteRenderer spriteRenderer;
+    protected PositionGrid grid;
+    public Sprite[] idle;
     private GridCoordinates position;
     public GridCoordinates Position
     { 
@@ -17,16 +19,8 @@ public class Character : MonoBehaviour
         set 
         {
             position = value;
+            transform.position = grid.GetTileVector3(value);
         }
-    }
-
-    public Sprite[] idle;
-    
-    protected PositionGrid grid;
-
-    public void UpdateSprite()
-    {
-        transform.position = grid.GetTileVector3(Position);
     }
 
     IEnumerator Idle()
@@ -47,10 +41,9 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Position = new GridCoordinates(GridPositionX, GridPositionY);
         grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        Position = new GridCoordinates(GridPositionX, GridPositionY);
         grid.AddCharacterToTile(Position, this);
-        UpdateSprite();
         StartCoroutine(Idle());
     }
 }

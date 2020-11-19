@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : Character
 {
-    //Acquire Player input
+    //Acquire Player input - every key has equal priority
     void Update()
     {
         if(Input.GetKeyDown("w"))
@@ -21,7 +21,7 @@ public class Player : Character
         {
             grid.MoveDown(this);
         }
-        
+
         if(Input.GetKeyDown("d"))
         {
             grid.MoveRight(this);
