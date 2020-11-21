@@ -17,7 +17,7 @@ public class PositionGrid : MonoBehaviour
         
     }
 
-    private void AssignTransformPositionsToTiles()
+    public void AssignTransformPositionsToTiles()
     {
         float xTransform = gridLowerLeftTileCenter_XCoordinate;
         float yTransform = gridLowerLeftTileCenter_YCoordinate;
@@ -40,7 +40,7 @@ public class PositionGrid : MonoBehaviour
         }
     }
 
-    private void AssignOwnershipOfTiles()
+    public void AssignOwnershipOfTiles()
     {
         Player player = GameObject.FindWithTag("Player").GetComponent(typeof(Player)) as Player;
         Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent(typeof(Enemy)) as Enemy;
@@ -112,12 +112,14 @@ public class PositionGrid : MonoBehaviour
         return validMove;
     }
 
+    //Characters can only move within established bounds
     private bool BoundCheck(Character character, GridCoordinates target)
     {
         return (AbsoluteBoundCheck(target.X, target.Y) && IffBoundCheck(character, target));
         
     }
 
+    //Moving Character must not go outside the bounds of the grid
     private bool AbsoluteBoundCheck(int xCoordinate, int yCoordinate)
     {
         return ((xCoordinate < xBound) && 
@@ -127,11 +129,11 @@ public class PositionGrid : MonoBehaviour
         
     }
 
+    //Moving Character must not move to unowned Tiles
     private bool IffBoundCheck(Character character, GridCoordinates target)
     {
-        Debug.Log (grid[target.X, target.Y].Owner);
-        //Debug.Log (character);
-        return false;
+        
+        return grid[target.X, target.Y].Owner == character;
         
     }
 
@@ -150,8 +152,8 @@ public class PositionGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AssignTransformPositionsToTiles();
-        AssignOwnershipOfTiles();
+        //AssignTransformPositionsToTiles();
+        //AssignOwnershipOfTiles();
     }
 
     // Update is called once per frame
