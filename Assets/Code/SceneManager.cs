@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
-    [SerializeField] private Player testCharacter;
-    [SerializeField] private Enemy testEnemy;
+    [SerializeField] public Player scenePlayer;
+    [SerializeField] public Enemy sceneEnemy;
     private Vector3 charPosition = new Vector3(1, 1);
     private Vector3 enemyPosition = new Vector3(5, 1);
 
@@ -28,10 +28,7 @@ public class SceneManager : MonoBehaviour
     void Start()
     { 
         Debug.Log("Starting");
-        Instantiate(testCharacter, charPosition, Quaternion.identity);
-        //testCharacter.UpdateSprite();
-        Instantiate(testEnemy, enemyPosition, Quaternion.identity);
-        //testEnemy.UpdateSprite();
-        //testEnemy.Position = new GridCoordinates(5, 1);
+        Instantiate(scenePlayer, charPosition, Quaternion.identity);
+        Instantiate(sceneEnemy, enemyPosition, Quaternion.identity);
     }
 }

@@ -16,6 +16,18 @@ public class Tile : MonoBehaviour
             standing = value;
         }
     }
+    public Character owner;
+    public Character Owner
+    {
+        get
+        {
+            return owner;
+        }
+        set
+        {
+            owner = value;
+        }
+    }
 
     public Tile(Vector3 position)
     {

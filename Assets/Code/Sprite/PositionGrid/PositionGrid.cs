@@ -32,11 +32,34 @@ public class PositionGrid : MonoBehaviour
             for (int j = 0; j < yBound; j++)
             {
                 Vector3 tilePosition = new Vector3(xTransform, yTransform);
-                this.grid[i,j] = Instantiate(tilePrefab, tilePosition, Quaternion.identity, tileContainer);
+                grid[i,j] = Instantiate(tilePrefab, tilePosition, Quaternion.identity, tileContainer);
                 yTransform += yOffset;
             }
 
             xTransform += xOffset;
+        }
+    }
+
+    private void AssignOwnershipOfTiles()
+    {
+        Player player = GameObject.FindWithTag("Player").GetComponent(typeof(Player)) as Player;
+        Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent(typeof(Enemy)) as Enemy;
+
+        //Assign the left half to the Player
+        for (int i = 0; i < (xBound/2); i++)
+        {
+            for (int j = 0; j < yBound; j++)
+            {
+                grid[i,j].Owner = player;
+            }
+        }
+        //Assign the right half to the Enemy
+        for (int i = (xBound/2); i < xBound; i++)
+        {
+            for (int j = 0; j < yBound; j++)
+            {
+                grid[i,j].Owner = enemy;
+            }
         }
     }
 
@@ -75,7 +98,7 @@ public class PositionGrid : MonoBehaviour
 
     private bool Move(Character character, GridCoordinates target)
     {
-        bool validMove = BoundCheck(target.X, target.Y);
+        bool validMove = BoundCheck(character, target);
         if (validMove) 
         {
             Debug.Log ("valid move");
@@ -89,12 +112,26 @@ public class PositionGrid : MonoBehaviour
         return validMove;
     }
 
-    private bool BoundCheck(int xCoordinate, int yCoordinate)
+    private bool BoundCheck(Character character, GridCoordinates target)
+    {
+        return (AbsoluteBoundCheck(target.X, target.Y) && IffBoundCheck(character, target));
+        
+    }
+
+    private bool AbsoluteBoundCheck(int xCoordinate, int yCoordinate)
     {
         return ((xCoordinate < xBound) && 
                 (yCoordinate < yBound) && 
                 (xCoordinate >= 0) &&
                 (yCoordinate >= 0));
+        
+    }
+
+    private bool IffBoundCheck(Character character, GridCoordinates target)
+    {
+        Debug.Log (grid[target.X, target.Y].Owner);
+        //Debug.Log (character);
+        return false;
         
     }
 
@@ -114,6 +151,7 @@ public class PositionGrid : MonoBehaviour
     void Start()
     {
         AssignTransformPositionsToTiles();
+        AssignOwnershipOfTiles();
     }
 
     // Update is called once per frame
