@@ -132,9 +132,7 @@ public class PositionGrid : MonoBehaviour
     //Moving Character must not move to unowned Tiles
     private bool IffBoundCheck(Character character, GridCoordinates target)
     {
-        
-        return grid[target.X, target.Y].Owner == character;
-        
+        return (grid[target.X, target.Y].Owner == character);
     }
 
     public void RemoveCharacterFromTile(GridCoordinates gridCoordinatesToRemoveFrom)
