@@ -89,6 +89,31 @@ public class PositionGrid : MonoBehaviour
         return validMove;
     }
 
+    public bool MoveUpValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.Y += 1;
+        return BoundCheck(target.X, target.Y);
+    }
+    public bool MoveDownValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.Y -= 1;
+        return BoundCheck(target.X, target.Y);
+    }
+    public bool MoveLeftValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.X -= 1;
+        return BoundCheck(target.X, target.Y);
+    }
+    public bool MoveRightValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.X += 1;
+        return BoundCheck(target.X, target.Y);
+    }
+
     private bool BoundCheck(int xCoordinate, int yCoordinate)
     {
         return ((xCoordinate < xBound) && 
