@@ -17,11 +17,13 @@ public class Enemy : Character
         grid.MoveRight(this);
         StartCoroutine(BasicAiMovement());
     }
+    
     //Kick off the movement using Start() after Awake() finishes initialization
     void Start()
     {
         StartCoroutine(BasicAiMovement());
     }
+    
     void Update()
     {
         
