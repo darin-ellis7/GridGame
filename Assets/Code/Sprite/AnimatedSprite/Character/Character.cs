@@ -69,7 +69,6 @@ public class Character : MonoBehaviour
         StartCoroutine(MoveOut());
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
         grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
