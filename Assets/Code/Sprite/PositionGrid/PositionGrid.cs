@@ -150,8 +150,6 @@ public class PositionGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //AssignTransformPositionsToTiles();
-        //AssignOwnershipOfTiles();
     }
 
     // Update is called once per frame
