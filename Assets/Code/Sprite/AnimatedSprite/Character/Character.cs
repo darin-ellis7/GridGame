@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    //public int[,] position = new int[1,1];
+    [SerializeField] private int GridPositionX = 0;
+    [SerializeField] private int GridPositionY = 0;
     public SpriteRenderer spriteRenderer;
+    protected PositionGrid grid;
+    public Sprite[] idle;
     private GridCoordinates position;
+    public Sprite[] move;
+    private const float moveAnimationTime = 0.02f;
     public GridCoordinates Position
     { 
         get
@@ -16,31 +21,10 @@ public class Character : MonoBehaviour
         set 
         {
             position = value;
+            transform.position = grid.GetTileVector3(value);
         }
     }
-
-    public Sprite[] idle;
-    public Sprite[] move;
-    private const float moveAnimationTime = 0.02f;
     
-    private PositionGrid grid;
-
-    public Character(GridCoordinates startingPosition, PositionGrid positionGrid)
-    {
-        position = startingPosition;
-        grid = positionGrid;
-    }
-
-    private void UpdateSprite()
-    {
-        this.transform.position = this.grid.GetTileVector3(this.position);
-    }
-
-    void Awake()
-    {
-        
-    }
-
     IEnumerator Idle()
     {
         spriteRenderer.sprite = idle[0];
@@ -66,7 +50,6 @@ public class Character : MonoBehaviour
             spriteRenderer.sprite = move[i];
             yield return new WaitForSeconds(moveAnimationTime);
         }
-        UpdateSprite();
         StartCoroutine(MoveIn());
     }
     
@@ -80,53 +63,17 @@ public class Character : MonoBehaviour
         StartCoroutine(Idle());
     }
 
-    private void PlayMovementAnimation()
+    protected void PlayMovementAnimation()
     {
         StopAllCoroutines();
         StartCoroutine(MoveOut());
-    } 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.tag = "Player";
-        this.grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
-        this.grid.AddCharacterToTile(this.position, this);
-        UpdateSprite();
-        StartCoroutine(Idle());
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        if(Input.GetKeyDown("w"))
-        {
-            if(this.grid.MoveUp(this))
-            {
-                PlayMovementAnimation();
-            }
-        }
-        if(Input.GetKeyDown("a"))
-        {
-            if(this.grid.MoveLeft(this))
-            {
-                PlayMovementAnimation();
-            }
-        }
-        if(Input.GetKeyDown("s"))
-        {
-            if(this.grid.MoveDown(this))
-            {
-                PlayMovementAnimation();
-            }
-        }
-        if(Input.GetKeyDown("d"))
-        {
-            if(this.grid.MoveRight(this))
-            {
-                PlayMovementAnimation();
-            }
-        }
-
+        grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        Position = new GridCoordinates(GridPositionX, GridPositionY);
+        grid.AddCharacterToTile(Position, this);
+        StartCoroutine(Idle());
     }
 }

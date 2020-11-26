@@ -11,7 +11,6 @@ public class PositionGrid : MonoBehaviour
     [SerializeField] private static float gridLowerLeftTileCenter_XCoordinate = 0.0f;
     [SerializeField] private static float gridLowerLeftTileCenter_YCoordinate = 0.0f;
     private Tile[,] grid = new Tile[xBound,yBound];
-    ///private List<Character> characters = new List<Character>();
 
     public PositionGrid()
     {
