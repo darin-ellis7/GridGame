@@ -52,6 +52,7 @@ public class Character : MonoBehaviour
             spriteRenderer.sprite = move[i];
             yield return new WaitForSeconds(moveAnimationTime);
         }
+
         moveFunction(this);
         StartCoroutine(MoveIn());
     }
