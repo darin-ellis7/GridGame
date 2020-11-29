@@ -11,41 +11,24 @@ public class Tile : MonoBehaviour
         All,
         None
     }
-    private Character standing;
     public Character Standing
-    {
-        get
-        {
-            return standing;
-        }
-        set
-        {
-            standing = value;
-        }
-    }
-    private MovementAllowance movementTagAllowed;
+    { get; set; }
     public MovementAllowance MovementTagAllowed
-    {
-        get
-        {
-            return movementTagAllowed;
-        }
-        set
-        {
-            movementTagAllowed = value;
-        }
-    }
+    { get; set; }
+    
 
     //Allow a character's movement onto this tile if it matches the allowed tag
     //OR if this tile's MovementAllowance is set to All
+    //But do not allow any movement if the Tile's MovementAllowance is None
     public bool IsCharacterMoveAllowed(Character movingCharacter)
     {
-        return ((MovementTagAllowed == movingCharacter.MovementTag) 
-             || (MovementTagAllowed == MovementAllowance.All));
+        return (((MovementTagAllowed == movingCharacter.MovementTag) 
+             || (MovementTagAllowed == MovementAllowance.All))
+             && (MovementTagAllowed != MovementAllowance.None));
     }
 
     public void ClearStanding()
     {
-        standing = null;
+        Standing = null;
     }
 }

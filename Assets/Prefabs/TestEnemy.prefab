@@ -101,3 +101,4 @@ MonoBehaviour:
   idle:
   - {fileID: -698580072099729084, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   move: []
+  MovementTag: 1

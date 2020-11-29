@@ -21,6 +21,7 @@ public class Character : MonoBehaviour
         } 
         set 
         {
+            //Always update the sprite's transform position at the same time we update its grid position
             position = value;
             transform.position = grid.GetTileVector3(value);
         }
