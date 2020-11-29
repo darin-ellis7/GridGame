@@ -139,9 +139,15 @@ public class PositionGrid : MonoBehaviour
         characterToAdd.Position = gridCoordinatesToAddTo;
     }
 
-    void Start()
+    public void InitializeGrid()
     {
+        AssignTransformPositionsToTiles();
+        AssignMovementAllowanceOfTiles();
+    }
 
+    void Awake()
+    {
+        InitializeGrid();
     }
 
     void Update()

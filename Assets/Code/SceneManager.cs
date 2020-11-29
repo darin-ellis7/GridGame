@@ -11,11 +11,8 @@ public class SceneManager : MonoBehaviour
 
     private void InitializeScene()
     {
-        PositionGrid grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
-        grid.AssignTransformPositionsToTiles();
         Instantiate(scenePlayer, charPosition, Quaternion.identity);
         Instantiate(sceneEnemy, enemyPosition, Quaternion.identity);
-        grid.AssignMovementAllowanceOfTiles();
     }
 
     void Awake()
