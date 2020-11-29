@@ -13,11 +13,7 @@ GameObject:
   - component: {fileID: 3994913858742966137}
   m_Layer: 8
   m_Name: TestEnemy
-<<<<<<< HEAD
   m_TagString: Enemy
-=======
-  m_TagString: Untagged
->>>>>>> develop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +100,4 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8534002569027365777}
   idle:
   - {fileID: -698580072099729084, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
-<<<<<<< HEAD
   move: []
-=======
->>>>>>> develop

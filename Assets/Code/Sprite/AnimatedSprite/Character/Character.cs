@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     private GridCoordinates position;
     public Sprite[] move;
     private const float moveAnimationTime = 0.02f;
+    public Tile.MovementAllowance MovementTag;
     public GridCoordinates Position
     { 
         get

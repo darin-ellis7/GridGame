@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public enum MovementAllowance
+    {
+        Players,
+        Enemies,
+        All,
+        None
+    }
     private Character standing;
     public Character Standing
     {
@@ -16,38 +23,29 @@ public class Tile : MonoBehaviour
             standing = value;
         }
     }
-    public Character owner;
-    public Character Owner
+    private MovementAllowance movementTagAllowed;
+    public MovementAllowance MovementTagAllowed
     {
         get
         {
-            return owner;
+            return movementTagAllowed;
         }
         set
         {
-            owner = value;
+            movementTagAllowed = value;
         }
     }
 
-    public Tile(Vector3 position)
+    //Allow a character's movement onto this tile if it matches the allowed tag
+    //OR if this tile's MovementAllowance is set to All
+    public bool IsCharacterMoveAllowed(Character movingCharacter)
     {
-        this.transform.position = position;
+        return ((MovementTagAllowed == movingCharacter.MovementTag) 
+             || (MovementTagAllowed == MovementAllowance.All));
     }
 
     public void ClearStanding()
     {
         standing = null;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

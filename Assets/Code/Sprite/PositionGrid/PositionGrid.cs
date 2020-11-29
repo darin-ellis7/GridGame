@@ -40,17 +40,14 @@ public class PositionGrid : MonoBehaviour
         }
     }
 
-    public void AssignOwnershipOfTiles()
+    public void AssignMovementAllowanceOfTiles()
     {
-        Player player = GameObject.FindWithTag("Player").GetComponent(typeof(Player)) as Player;
-        Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent(typeof(Enemy)) as Enemy;
-
         //Assign the left half to the Player
         for (int i = 0; i < (xBound/2); i++)
         {
             for (int j = 0; j < yBound; j++)
             {
-                grid[i,j].Owner = player;
+                grid[i,j].MovementTagAllowed = Tile.MovementAllowance.Players;
             }
         }
         //Assign the right half to the Enemy
@@ -58,7 +55,7 @@ public class PositionGrid : MonoBehaviour
         {
             for (int j = 0; j < yBound; j++)
             {
-                grid[i,j].Owner = enemy;
+                grid[i,j].MovementTagAllowed = Tile.MovementAllowance.Enemies;
             }
         }
     }
@@ -129,10 +126,10 @@ public class PositionGrid : MonoBehaviour
         
     }
 
-    //Moving Character must not move to unowned Tiles
+    //Ask the target Tile if the character is allowed to move onto it
     private bool IffBoundCheck(Character character, GridCoordinates target)
     {
-        return (grid[target.X, target.Y].Owner == character);
+        return grid[target.X, target.Y].IsCharacterMoveAllowed(character);
     }
 
     public void RemoveCharacterFromTile(GridCoordinates gridCoordinatesToRemoveFrom)
@@ -147,12 +144,11 @@ public class PositionGrid : MonoBehaviour
         characterToAdd.Position = gridCoordinatesToAddTo;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         

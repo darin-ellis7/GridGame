@@ -15,7 +15,7 @@ public class SceneManager : MonoBehaviour
         grid.AssignTransformPositionsToTiles();
         Instantiate(scenePlayer, charPosition, Quaternion.identity);
         Instantiate(sceneEnemy, enemyPosition, Quaternion.identity);
-        grid.AssignOwnershipOfTiles();
+        grid.AssignMovementAllowanceOfTiles();
     }
 
     void Awake()
