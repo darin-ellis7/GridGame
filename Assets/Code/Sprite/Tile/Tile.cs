@@ -6,8 +6,8 @@ public class Tile : MonoBehaviour
 {
     public enum MovementAllowance
     {
-        Players,
-        Enemies,
+        Friend,
+        Foe,
         All,
         None
     }
