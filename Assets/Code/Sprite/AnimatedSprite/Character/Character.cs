@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     private GridCoordinates position;
     public Sprite[] move;
     private const float moveAnimationTime = 0.02f;
+    public Tile.MovementAllowance MovementTag;
     public GridCoordinates Position
     { 
         get
@@ -20,6 +21,7 @@ public class Character : MonoBehaviour
         } 
         set 
         {
+            //Always update the sprite's transform position at the same time we update its grid position
             position = value;
             transform.position = grid.GetTileVector3(value);
         }
