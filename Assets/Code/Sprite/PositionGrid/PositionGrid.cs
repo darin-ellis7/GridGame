@@ -35,7 +35,7 @@ public class PositionGrid : MonoBehaviour
         }
     }
 
-    public void AssignMovementAllowanceOfTiles()
+    private void AssignMovementAllowanceOfTiles()
     {
         //Assign the left half to the Player
         for (int i = 0; i < (xBound/2); i++)
