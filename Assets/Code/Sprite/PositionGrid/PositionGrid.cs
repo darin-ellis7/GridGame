@@ -12,12 +12,7 @@ public class PositionGrid : MonoBehaviour
     [SerializeField] private static float gridLowerLeftTileCenter_YCoordinate = 0.0f;
     private Tile[,] grid = new Tile[xBound,yBound];
 
-    public PositionGrid()
-    {
-        
-    }
-
-    private void AssignTransformPositionsToTiles()
+    public void AssignTransformPositionsToTiles()
     {
         float xTransform = gridLowerLeftTileCenter_XCoordinate;
         float yTransform = gridLowerLeftTileCenter_YCoordinate;
@@ -32,11 +27,31 @@ public class PositionGrid : MonoBehaviour
             for (int j = 0; j < yBound; j++)
             {
                 Vector3 tilePosition = new Vector3(xTransform, yTransform);
-                this.grid[i,j] = Instantiate(tilePrefab, tilePosition, Quaternion.identity, tileContainer);
+                grid[i,j] = Instantiate(tilePrefab, tilePosition, Quaternion.identity, tileContainer);
                 yTransform += yOffset;
             }
 
             xTransform += xOffset;
+        }
+    }
+
+    private void AssignMovementAllowanceOfTiles()
+    {
+        //Assign the left half to the Player
+        for (int i = 0; i < (xBound/2); i++)
+        {
+            for (int j = 0; j < yBound; j++)
+            {
+                grid[i,j].MovementTagAllowed = Tile.MovementAllowance.Friend
+            }
+        }
+        //Assign the right half to the Enemy
+        for (int i = (xBound/2); i < xBound; i++)
+        {
+            for (int j = 0; j < yBound; j++)
+            {
+                grid[i,j].MovementTagAllowed = Tile.MovementAllowance.Foe;
+            }
         }
     }
 
@@ -75,7 +90,7 @@ public class PositionGrid : MonoBehaviour
 
     private bool Move(Character character, GridCoordinates target)
     {
-        bool validMove = BoundCheck(target.X, target.Y);
+        bool validMove = BoundCheck(character, target);
         if (validMove) 
         {
             Debug.Log ("valid move");
@@ -93,34 +108,48 @@ public class PositionGrid : MonoBehaviour
     {
         GridCoordinates target = character.Position;
         target.Y += 1;
-        return BoundCheck(target.X, target.Y);
+        return BoundCheck(character, target);
     }
     public bool MoveDownValid(Character character)
     {
         GridCoordinates target = character.Position;
         target.Y -= 1;
-        return BoundCheck(target.X, target.Y);
+        return BoundCheck(character, target);
     }
     public bool MoveLeftValid(Character character)
     {
         GridCoordinates target = character.Position;
         target.X -= 1;
-        return BoundCheck(target.X, target.Y);
+        return BoundCheck(character, target);
     }
     public bool MoveRightValid(Character character)
     {
         GridCoordinates target = character.Position;
         target.X += 1;
-        return BoundCheck(target.X, target.Y);
+        return BoundCheck(character, target);
     }
 
-    private bool BoundCheck(int xCoordinate, int yCoordinate)
+    //Characters can only move within established bounds
+    private bool BoundCheck(Character character, GridCoordinates target)
+    {
+        return (AbsoluteBoundCheck(target.X, target.Y) && IffBoundCheck(character, target));
+        
+    }
+
+    //Moving Character must not go outside the bounds of the grid
+    private bool AbsoluteBoundCheck(int xCoordinate, int yCoordinate)
     {
         return ((xCoordinate < xBound) && 
                 (yCoordinate < yBound) && 
                 (xCoordinate >= 0) &&
                 (yCoordinate >= 0));
         
+    }
+
+    //Ask the target Tile if the character is allowed to move onto it
+    private bool IffBoundCheck(Character character, GridCoordinates target)
+    {
+        return grid[target.X, target.Y].IsCharacterMoveAllowed(character);
     }
 
     public void RemoveCharacterFromTile(GridCoordinates gridCoordinatesToRemoveFrom)
@@ -135,13 +164,17 @@ public class PositionGrid : MonoBehaviour
         characterToAdd.Position = gridCoordinatesToAddTo;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void InitializeGrid()
     {
         AssignTransformPositionsToTiles();
+        AssignMovementAllowanceOfTiles();
     }
 
-    // Update is called once per frame
+    void Awake()
+    {
+        InitializeGrid();
+    }
+
     void Update()
     {
         

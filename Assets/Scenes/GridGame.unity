@@ -211,9 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a470f280a3bdc2f419664a6a83f02e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testCharacter: {fileID: -6232108760227615246, guid: bf43a37a6e830034b92adbd8460854af,
+  scenePlayer: {fileID: -6232108760227615246, guid: bf43a37a6e830034b92adbd8460854af,
     type: 3}
-  testEnemy: {fileID: 3994913858742966137, guid: 012c7f9b65cdccf41b71bf83424d4e1e,
+  sceneEnemy: {fileID: 3994913858742966137, guid: 012c7f9b65cdccf41b71bf83424d4e1e,
     type: 3}
 --- !u!1 &1614124786
 GameObject:
