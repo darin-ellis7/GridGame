@@ -9,30 +9,30 @@ public class Player : Character
     {
         if(Input.GetKeyDown("w"))
         {
-            if(grid.MoveUp(this))
+            if(grid.MoveUpValid(this))
             {
-                PlayMovementAnimation();
+                PlayMovementAnimation(grid.MoveUp);
             }
         }
         if(Input.GetKeyDown("a"))
         {
-            if(grid.MoveLeft(this))
+            if(grid.MoveLeftValid(this))
             {
-                PlayMovementAnimation();
+                PlayMovementAnimation(grid.MoveLeft);
             }
         }
         if(Input.GetKeyDown("s"))
         {
-            if(grid.MoveDown(this))
+            if(grid.MoveDownValid(this))
             {
-                PlayMovementAnimation();
+                PlayMovementAnimation(grid.MoveDown);
             }
         }
         if(Input.GetKeyDown("d"))
         {
-            if(grid.MoveRight(this))
+            if(grid.MoveRightValid(this))
             {
-                PlayMovementAnimation();
+                PlayMovementAnimation(grid.MoveRight);
             }
         }
 

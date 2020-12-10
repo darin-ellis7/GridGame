@@ -104,6 +104,31 @@ public class PositionGrid : MonoBehaviour
         return validMove;
     }
 
+    public bool MoveUpValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.Y += 1;
+        return BoundCheck(character, target);
+    }
+    public bool MoveDownValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.Y -= 1;
+        return BoundCheck(character, target);
+    }
+    public bool MoveLeftValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.X -= 1;
+        return BoundCheck(character, target);
+    }
+    public bool MoveRightValid(Character character)
+    {
+        GridCoordinates target = character.Position;
+        target.X += 1;
+        return BoundCheck(character, target);
+    }
+
     //Characters can only move within established bounds
     private bool BoundCheck(Character character, GridCoordinates target)
     {

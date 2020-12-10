@@ -45,13 +45,17 @@ public class Character : MonoBehaviour
         StartCoroutine(Idle());
     }
 
-    IEnumerator MoveOut()
+    public delegate bool MoveFunction(Character character);
+
+    IEnumerator MoveOut(MoveFunction moveFunction)
     {
         for(int i = 0; i < move.Length; i++)
         {
             spriteRenderer.sprite = move[i];
             yield return new WaitForSeconds(moveAnimationTime);
         }
+
+        moveFunction(this);
         StartCoroutine(MoveIn());
     }
     
@@ -65,10 +69,10 @@ public class Character : MonoBehaviour
         StartCoroutine(Idle());
     }
 
-    protected void PlayMovementAnimation()
+    protected void PlayMovementAnimation(MoveFunction moveFunction)
     {
         StopAllCoroutines();
-        StartCoroutine(MoveOut());
+        StartCoroutine(MoveOut(moveFunction));
     }
 
     void Awake()
