@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public GameObject Buster;
     public Sprite[] basicAttack;
     IEnumerator BasicAttack()
     {
@@ -21,6 +22,12 @@ public class Player : Character
     {
         StopAllCoroutines();
         StartCoroutine(BasicAttack());
+        FireBuster();
+    }
+
+    private void FireBuster()
+    {
+        GameObject Attack = Instantiate(Buster, transform) as GameObject;
     }
 
     //Acquire Player input - every key has equal priority

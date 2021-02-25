@@ -5,10 +5,11 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    [SerializeField] private Transform tileContainer;
 
     void Awake()
     {
-        grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        
     }
 
     // Start is called before the first frame update
