@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
         }
     }
     
-    IEnumerator Idle()
+    protected IEnumerator Idle()
     {
         spriteRenderer.sprite = idle[0];
         yield return new WaitForSeconds(3);

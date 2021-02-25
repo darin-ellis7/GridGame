@@ -107,3 +107,10 @@ MonoBehaviour:
   - {fileID: -9105917943179242286, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   - {fileID: -8121689194306274269, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   - {fileID: -5877150311823108249, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
+  MovementTag: 0
+  basicAttack:
+  - {fileID: 21300000, guid: ea256ca97a228f94ebfb903e7841ad55, type: 3}
+  - {fileID: 21300000, guid: ca982a467b6a2ce4da28d67a46cd25a8, type: 3}
+  - {fileID: 21300000, guid: 2492cffabcaded64d966569d79e689bd, type: 3}
+  - {fileID: 21300000, guid: f6527686006bbdf4b8d6d2246ed598c2, type: 3}
+  - {fileID: 21300000, guid: ea256ca97a228f94ebfb903e7841ad55, type: 3}

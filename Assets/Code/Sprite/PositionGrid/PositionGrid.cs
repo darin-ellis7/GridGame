@@ -42,7 +42,7 @@ public class PositionGrid : MonoBehaviour
         {
             for (int j = 0; j < yBound; j++)
             {
-                grid[i,j].MovementTagAllowed = Tile.MovementAllowance.Friend
+                grid[i,j].MovementTagAllowed = Tile.MovementAllowance.Friend;
             }
         }
         //Assign the right half to the Enemy
