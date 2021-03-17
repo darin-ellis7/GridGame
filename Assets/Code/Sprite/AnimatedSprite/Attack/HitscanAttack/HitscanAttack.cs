@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class HitscanAttack : Attack
 {
-    private PositionGrid grid;
+    
 
     //spawn self in character container so it ca nreference the owning character
 
-    void Awake()
-    {
-        
-    }
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        grid = GameObject.FindWithTag("SceneManager").GetComponent(typeof(PositionGrid)) as PositionGrid;
+        yield WaitForSeconds(1f);
         
     }
+
+    // protected IEnumerator Wait()
+    // {
+    //     yield return new WaitForSeconds(5f);
+    // }
 
     private void SearchRight()
     {
@@ -28,6 +30,6 @@ public class HitscanAttack : Attack
     // Update is called once per frame
     void Update()
     {
-
+        Destroy(this);
     }
 }

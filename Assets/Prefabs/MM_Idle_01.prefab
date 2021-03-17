@@ -108,6 +108,7 @@ MonoBehaviour:
   - {fileID: -8121689194306274269, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   - {fileID: -5877150311823108249, guid: b986ca459ab323d43a1c567762f214c9, type: 3}
   MovementTag: 0
+  Buster: {fileID: 6730411036225508872, guid: fd3d9f3eb07e290408e52b048b8fbfd0, type: 3}
   basicAttack:
   - {fileID: 21300000, guid: ea256ca97a228f94ebfb903e7841ad55, type: 3}
   - {fileID: 21300000, guid: ca982a467b6a2ce4da28d67a46cd25a8, type: 3}
