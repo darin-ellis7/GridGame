@@ -91,16 +91,13 @@ public class PositionGrid : MonoBehaviour
     private bool Move(Character character, GridCoordinates target)
     {
         bool validMove = BoundCheck(character, target);
+        
         if (validMove) 
         {
-            Debug.Log ("valid move");
             RemoveCharacterFromTile(character.Position);
             AddCharacterToTile(target, character);
         }
-        else
-        {
-            Debug.Log ("invalid move");
-        }
+
         return validMove;
     }
 
@@ -157,11 +154,27 @@ public class PositionGrid : MonoBehaviour
         Tile tile = grid[gridCoordinatesToRemoveFrom.X, gridCoordinatesToRemoveFrom.Y];
         tile.ClearStanding();
     }
+
     public void AddCharacterToTile(GridCoordinates gridCoordinatesToAddTo, Character characterToAdd)
     {
         Tile tile = grid[gridCoordinatesToAddTo.X, gridCoordinatesToAddTo.Y];
         tile.Standing = characterToAdd;
         characterToAdd.Position = gridCoordinatesToAddTo;
+    }
+
+    public bool TileExists(GridCoordinates coordinates)
+    {
+        return AbsoluteBoundCheck(coordinates.X, coordinates.Y);
+    }
+
+    public bool IsTilePopulated(GridCoordinates coordinates)
+    {
+        return (grid[coordinates.X, coordinates.Y].Standing != null);
+    }
+
+    public Character GetCharacterOnTile(GridCoordinates coordinates)
+    {
+        return grid[coordinates.X, coordinates.Y].Standing;
     }
 
     public void InitializeGrid()
